@@ -1,0 +1,16 @@
+<div class="parent">
+  <div class="div1"> <h1>one</h1></div>
+  <div class="div2"> 
+    <h1>Crud App</h1>
+    <p>Developed using MEAN stack</p>
+  </div>
+  <div class="div3">
+    <form [formGroup]="dataForm" (ngSubmit)='save()'>
+    <label for="name">Name:</label>
+    <input formControlName='name' type="text" placeholder="Name">
+    <label for="email">Email:</label>
+    <input formControlName='email' type="text" placeholder="Email">
+    <button type='submit'>Submit</button>
+    </form>
+  </div>
+</div> 
