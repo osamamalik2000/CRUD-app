@@ -16,6 +16,10 @@ export class DatasendService {
     )
   }
   getData(){
-      return this.http.get(this.url+"/getData");
+    return this.http.get(this.url+"/getData");
+  }
+  delItem(id:any){
+    console.log(id);
+    return this.http.get(this.url+"/delData/"+id);
   }
 }

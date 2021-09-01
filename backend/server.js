@@ -42,6 +42,13 @@ app.get('/api/getData', (req,res)=>{
         res.send({data:data});
     })
 })
+app.get('/api/delData/:id', (req, res)=>{
+    let id = req.params.id;
+    userModel.remove({'_id':id}, (err)=>{
+        if(err) throw err;
+        res.json({msg:"Deleted"});
+    })
+})
 
 // Connecting server to a port
 app.listen(3000, console.log("Server is running."))

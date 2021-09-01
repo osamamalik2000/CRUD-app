@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DatasendService } from './datasend.service';
 
@@ -7,7 +7,7 @@ import { DatasendService } from './datasend.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'crud-app';
   dataForm : FormGroup;
   rawData: any;
@@ -15,13 +15,16 @@ export class AppComponent {
   constructor(private fb:FormBuilder, private ds:DatasendService){
     this.dataForm = this.fb.group({
       'name': new FormControl('', Validators.required),
-      'email': new FormControl('', [Validators.required,Validators.email])
+      'email': new FormControl('', [Validators.required, Validators.email])
     })
+  }
+  ngOnInit(){
     this.getD();
   }
   save(){
     this.ds.dataSave(this.dataForm.getRawValue());
     this.dataForm.reset();
+    this.ngOnInit();
   }
   getD(){
     this.ds.getData()
@@ -30,5 +33,12 @@ export class AppComponent {
       this.insData = this.rawData.data;
     }
     )
+  }
+  delete(id: any){
+    this.ds.delItem(id)
+    .subscribe(res=>{
+      console.log(res);
+    })
+    this.ngOnInit();
   }
 }
