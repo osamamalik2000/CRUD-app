@@ -10,12 +10,19 @@
     grid-row-gap: 0px;
     }
 /* div1 */
-.div1 {
-    display: flex;
-    justify-content: center; 
+.div1 { 
     height:100vh;
     border-right:solid black 1px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     grid-area: 1 / 1 / 6 / 4; }
+.div1 table{
+    border: 1px solid black;
+    width:100%;
+    height: max-content;
+}
+.div1 button{
+    width: 5rem;
+}
 /* div2 */
 .div2 { 
     display: flex;

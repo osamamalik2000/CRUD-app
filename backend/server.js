@@ -23,17 +23,23 @@ app.get("/", (req, res)=>{
     res.send("CRUD is running.");
 })
 
-app.post('/data', (req,res)=>{
+app.post('/api/indata', (req,res)=>{
     let ins = userModel({
         'name': req.body.name,
         'email': req.body.email
     })
     ins.save()
-    .then((res)=>{
-        res.send("INSERTED");
+    .then((req,res)=>{
+        res.send({msg:"INSERTED"});
     }).catch((err)=>{
-        console.log(err);
-        res.send("CAN NOT INSERT");
+        res.send({msg:"CAN NOT INSERT"});
+    })
+})
+
+app.get('/api/getData', (req,res)=>{
+    userModel.find({},(err, data)=>{
+        if(err) console.log(err)
+        res.send({data:data});
     })
 })
 

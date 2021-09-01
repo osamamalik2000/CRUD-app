@@ -10,14 +10,25 @@ import { DatasendService } from './datasend.service';
 export class AppComponent {
   title = 'crud-app';
   dataForm : FormGroup;
+  rawData: any;
+  insData: any;
   constructor(private fb:FormBuilder, private ds:DatasendService){
     this.dataForm = this.fb.group({
       'name': new FormControl('', Validators.required),
       'email': new FormControl('', [Validators.required,Validators.email])
     })
-
+    this.getD();
   }
   save(){
     this.ds.dataSave(this.dataForm.getRawValue());
+    this.dataForm.reset();
+  }
+  getD(){
+    this.ds.getData()
+    .subscribe(res=>{
+      this.rawData = res;
+      this.insData = this.rawData.data;
+    }
+    )
   }
 }

@@ -1,9 +1,27 @@
 <div class="parent">
-  <div class="div1"> <h1>one</h1></div>
+  <!-- div1 -->
+  <div class="div1"> 
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>E-mail</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+      <tr *ngFor= "let d of insData">
+        <td>{{d.name}}</td>
+        <td>{{d.email}}</td>
+        <td><button>Update</button></td>
+        <td><button>Delete</button></td>
+      </tr>
+    </table>
+  </div>
+  <!-- div2 -->
   <div class="div2"> 
     <h1>Crud App</h1>
     <p>Developed using MEAN stack</p>
   </div>
+  <!-- div3 -->
   <div class="div3">
     <form [formGroup]="dataForm" (ngSubmit)='save()'>
     <label for="name">Name:</label>
