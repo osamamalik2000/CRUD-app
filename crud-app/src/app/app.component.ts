@@ -38,7 +38,7 @@ export class AppComponent implements OnInit{
     this.ds.delItem(id)
     .subscribe(res=>{
       console.log(res);
+      this.ngOnInit();
     })
-    this.ngOnInit();
   }
 }
