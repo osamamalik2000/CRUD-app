@@ -13,41 +13,52 @@ app.use(bodyParser.json());
 mongoose.connect("mongodb://localhost/CRUD",{
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: true
 });
 
 // Schema
 const userModel = require("./user");
 
-// Requests
+// Request for testing api
 app.get("/", (req, res)=>{
     res.send("CRUD is running.");
 })
-
+// Api for saving data
 app.post('/api/indata', (req,res)=>{
-    let ins = userModel({
-        'name': req.body.name,
-        'email': req.body.email
+    const ins = new userModel({
+        name: req.body.name,
+        email: req.body.email
     })
     ins.save()
     .then((req,res)=>{
         res.send({msg:"INSERTED"});
     }).catch((err)=>{
-        res.send({msg:"CAN NOT INSERT"});
+        res.send({err:err});
     })
 })
-
+// Api for fetching data
 app.get('/api/getData', (req,res)=>{
     userModel.find({},(err, data)=>{
         if(err) console.log(err)
         res.send({data:data});
     })
 })
+// Api for deleting data
 app.get('/api/delData/:id', (req, res)=>{
-    let id = req.params.id;
-    userModel.remove({'_id':id}, (err)=>{
-        if(err) throw err;
+    userModel.findByIdAndDelete(req.params.id , (err)=>{
+        if(err) throw err
         res.json({msg:"Deleted"});
     })
+})
+// Api for updating data
+app.put('/api/updData/:id', (req, res)=>{
+    userModel.findByIdAndUpdate(req.params.id, 
+    { $set: {name: req.body.name, email: req.body.email}},
+    { new: true},
+    (err)=>{
+       if(err) throw err
+        }
+    )
 })
 
 // Connecting server to a port

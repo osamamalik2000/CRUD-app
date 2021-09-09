@@ -21,11 +21,13 @@ export class AppComponent implements OnInit{
   ngOnInit(){
     this.getD();
   }
+  // Saving data in db
   save(){
     this.ds.dataSave(this.dataForm.getRawValue());
     this.dataForm.reset();
     this.ngOnInit();
   }
+  // Fetching data
   getD(){
     this.ds.getData()
     .subscribe(res=>{
@@ -34,11 +36,25 @@ export class AppComponent implements OnInit{
     }
     )
   }
+  // Deleting data
   delete(id: any){
     this.ds.delItem(id)
     .subscribe(res=>{
       console.log(res);
       this.ngOnInit();
     })
+  }
+  // Updating data with the help of window.prompt function
+  update(id: any){
+    let uData:any;
+    uData = this.fb.group({
+      'name': window.prompt("Name:"),
+      'email': window.prompt("Email:")
+    });
+    this.ds.updItem(id, uData.getRawValue())
+    .subscribe(res=>{
+      console.log(res);
+    })
+    this.ngOnInit();
   }
 }

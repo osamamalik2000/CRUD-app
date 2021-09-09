@@ -11,7 +11,7 @@
       <tr *ngFor= "let d of insData">
         <td>{{d.name}}</td>
         <td>{{d.email}}</td>
-        <td><button>Update</button></td>
+        <td><button (click)="update(d._id)">Update</button></td>
         <td><button (click)="delete(d._id)">Delete</button></td>
       </tr>
     </table>
