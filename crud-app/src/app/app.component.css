@@ -3,16 +3,18 @@
     padding: 0;
   }
 .parent {
+    background:black;
+    border: solid black 2px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    border: solid black 1px;
     }
 /* div1 */
 .div1 { 
     height:100vh;
+    color: cornsilk;
     font-family: Georgia, 'Times New Roman', Times, serif;
     grid-area: 1 / 1 / 6 / 4; }
 .div1 table{
@@ -21,19 +23,36 @@
     height: max-content;
 }
 .div1 button{
+    background:black;
+    color:cornsilk; 
+    border-radius: 0.25rem;
     width: 5rem;
 }
+.div1 button:hover{
+    background: cornsilk;
+    color: black;
+}
 .div1 th{
+    background-color: black;
+    color:cornsilk;    
+    text-align: center;
     font-size: 1.5rem;
     padding-bottom: 0.7rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.div1 tr{
+    font-size: 1.2rem;
+    margin: 25rem 0;
+    text-align: center;    
 }
 /* div2 */
 .div2 { 
+    color: cornsilk;
     display: flex;
     align-items: center;
     flex-direction: column;
     grid-area: 1 / 4 / 3 / 6;
-    border-left: solid black 1px;
+    border-left: solid cornsilk 2px;
  }
 .div2 h1{
     margin-top: 10vh;
@@ -42,16 +61,19 @@
 }
 .div2 p{
     margin-top:4vh;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.25rem;
     
 }
 /* div3 */
 .div3 { 
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: cornsilk;
     grid-area: 3 / 4 / 6 / 6;
     display:flex;
     flex-direction: column;
     justify-content: center; 
-    border-left: solid black 1px;
+    border-left: solid cornsilk 2px;
 }
 form{
     display: flex;
@@ -63,12 +85,20 @@ form{
     padding: 0.3em;
     align-self: center ;
 }
+.div3 label{
+    font-size: 1.3rem;
+}
 .div3 button{
+    height:2rem;
     margin-top: 1.5em;
     width: 5em;
-    background:darkseagreen;
-    border: darkseagreen;
+    color:cornsilk;
+    background:black;
     border-radius: 0.3em;
+}
+.div3 button:hover{
+    background-color: blanchedalmond;
+    color:black;
 }
 input{
     border-radius: 0.3em;

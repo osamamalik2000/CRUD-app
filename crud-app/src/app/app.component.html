@@ -3,12 +3,14 @@
   <div class="div1"> 
     <table>
       <tr>
+        <th align=left>S No.</th>
         <th align=left>Product</th>
         <th align=left>Quantity</th>
         <th align=left>Update</th>
         <th align=left>Delete</th>
       </tr>
-      <tr *ngFor= "let d of insData">
+      <tr *ngFor= "let d of insData; let i=index">
+        <td>{{i+1}}</td>
         <td>{{d.product}}</td>
         <td>{{d.quantity}}</td>
         <td><button (click)="update(d._id)">Update</button></td>
