@@ -14,8 +14,8 @@ export class AppComponent implements OnInit{
   insData: any;
   constructor(private fb:FormBuilder, private ds:DatasendService){
     this.dataForm = this.fb.group({
-      'name': new FormControl('', Validators.required),
-      'email': new FormControl('', [Validators.required, Validators.email])
+      'product': new FormControl('', Validators.required),
+      'quantity': new FormControl('', Validators.required)
     })
   }
   ngOnInit(){
@@ -48,8 +48,8 @@ export class AppComponent implements OnInit{
   update(id: any){
     let uData:any;
     uData = this.fb.group({
-      'name': window.prompt("Name:"),
-      'email': window.prompt("Email:")
+      'product': window.prompt("Product:"),
+      'quantity': window.prompt("Quantity:")
     });
     this.ds.updItem(id, uData.getRawValue())
     .subscribe(res=>{

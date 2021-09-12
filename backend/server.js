@@ -26,14 +26,15 @@ app.get("/", (req, res)=>{
 // Api for saving data
 app.post('/api/indata', (req,res)=>{
     const ins = new userModel({
-        name: req.body.name,
-        email: req.body.email
+        product: req.body.product,
+        quantity: req.body.quantity
     })
     ins.save()
     .then((req,res)=>{
-        res.send({msg:"INSERTED"});
-    }).catch((err)=>{
-        res.send({err:err});
+        res.json({msg:"INSERTED"});
+    }).catch((err, doc)=>{
+        if(err){throw err}
+        else{res.json({msg: doc})}
     })
 })
 // Api for fetching data
@@ -53,7 +54,7 @@ app.get('/api/delData/:id', (req, res)=>{
 // Api for updating data
 app.put('/api/updData/:id', (req, res)=>{
     userModel.findByIdAndUpdate(req.params.id, 
-    { $set: {name: req.body.name, email: req.body.email}},
+    { $set: {product: req.body.product, quantity: req.body.quantity}},
     { new: true},
     (err)=>{
        if(err) throw err
@@ -62,4 +63,5 @@ app.put('/api/updData/:id', (req, res)=>{
 })
 
 // Connecting server to a port
-app.listen(3000, console.log("Server is running."))
+port = process.env.PORT || 3000;
+app.listen(port, console.log("Server is running."))

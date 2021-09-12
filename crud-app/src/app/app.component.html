@@ -3,14 +3,14 @@
   <div class="div1"> 
     <table>
       <tr>
-        <th>Name</th>
-        <th>E-mail</th>
-        <th>Update</th>
-        <th>Delete</th>
+        <th align=left>Product</th>
+        <th align=left>Quantity</th>
+        <th align=left>Update</th>
+        <th align=left>Delete</th>
       </tr>
       <tr *ngFor= "let d of insData">
-        <td>{{d.name}}</td>
-        <td>{{d.email}}</td>
+        <td>{{d.product}}</td>
+        <td>{{d.quantity}}</td>
         <td><button (click)="update(d._id)">Update</button></td>
         <td><button (click)="delete(d._id)">Delete</button></td>
       </tr>
@@ -18,16 +18,16 @@
   </div>
   <!-- div2 -->
   <div class="div2"> 
-    <h1>Crud App</h1>
+    <h1>Shoppipng List</h1>
     <p>Developed using MEAN stack</p>
   </div>
   <!-- div3 -->
   <div class="div3">
     <form [formGroup]="dataForm" (ngSubmit)='save()'>
-    <label for="name">Name:</label>
-    <input formControlName='name' type="text" placeholder="Name" required>
-    <label for="email">Email:</label>
-    <input formControlName='email' type="text" placeholder="Email" required>
+    <label for="product">Product:</label>
+    <input formControlName='product' type="text" placeholder="Product name" required>
+    <label for="quantity">Quantity:</label>
+    <input formControlName='quantity' type="number" placeholder="0" required>
     <button type='submit'>Submit</button>
     </form>
   </div>
