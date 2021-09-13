@@ -13,7 +13,7 @@
         <td>{{i+1}}</td>
         <td>{{d.product}}</td>
         <td>{{d.quantity}}</td>
-        <td><button (click)="update(d._id)">Update</button></td>
+        <td><button id="button" (click)="modalShow(d._id)">Update</button></td>
         <td><button (click)="delete(d._id)">Delete</button></td>
       </tr>
     </table>
@@ -32,5 +32,19 @@
     <input formControlName='quantity' type="number" placeholder="0" required>
     <button type='submit'>Submit</button>
     </form>
+  </div>
+
+  <!-- Modal Section -->
+
+  <div class="bg-modal" *ngIf="modal">
+	  <div class="modal-contents">
+      <div class="close" (click)="modalHide()">+</div>
+		  <form [formGroup]="dataForm" (ngSubmit)='update()' class="bg-form" action="">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9Q8JB8fnhmE7R_Xw-9uBQwXZbNUNKRR0M3g&usqp=CAU" alt="Update Item">
+		    <input type="text" formControlName='product' placeholder="Product">
+		    <input type="number" formControlName='quantity' placeholder="Quantity">
+        <button type="submit">Update</button>
+		  </form>
+    </div>
   </div>
 </div> 

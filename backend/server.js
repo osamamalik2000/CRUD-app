@@ -58,6 +58,7 @@ app.put('/api/updData/:id', (req, res)=>{
     { new: true},
     (err)=>{
        if(err) throw err
+       res.json({msg:"Updated"});
         }
     )
 })

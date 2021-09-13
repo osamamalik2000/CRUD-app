@@ -10,8 +10,10 @@ import { DatasendService } from './datasend.service';
 export class AppComponent implements OnInit{
   title = 'crud-app';
   dataForm : FormGroup;
-  rawData: any;
-  insData: any;
+  modal = false //For showing and hiding model
+  idUpd:any; //Used in update to pass the item id
+  rawData: any; //Response in JSON format
+  insData: any;  //Taking only data from json format
   constructor(private fb:FormBuilder, private ds:DatasendService){
     this.dataForm = this.fb.group({
       'product': new FormControl('', Validators.required),
@@ -44,17 +46,22 @@ export class AppComponent implements OnInit{
       this.ngOnInit();
     })
   }
+  // Modal show 
+  modalShow(id:any){
+    this.modal = true;
+    this.idUpd = id; // Storing id for use in getting the elemnt to be updated in update() function
+  }
+  // Modal Hide
+  modalHide(){
+    this.modal = false;
+  }
   // Updating data with the help of window.prompt function
-  update(id: any){
-    let uData:any;
-    uData = this.fb.group({
-      'product': window.prompt("Product:"),
-      'quantity': window.prompt("Quantity:")
-    });
-    this.ds.updItem(id, uData.getRawValue())
+  update(){
+    this.ds.updItem(this.idUpd, this.dataForm.getRawValue())
     .subscribe(res=>{
       console.log(res);
-    })
+    });
+    this.modalHide(); //For hiding the modal after form submission
     this.ngOnInit();
   }
 }

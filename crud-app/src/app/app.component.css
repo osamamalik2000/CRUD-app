@@ -100,6 +100,69 @@ form{
     background-color: blanchedalmond;
     color:black;
 }
-input{
+.div3 input{
     border-radius: 0.3em;
+}
+
+/*  MODAL STARTS HERE */
+
+.bg-modal {
+	background-color: rgba(0, 0, 0, 0.8);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.modal-contents {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+	width: 500px;
+	background-color: white;
+	text-align: center;
+	padding: 20px;
+	position: relative;
+	border-radius: 15px;
+}
+.bg-form{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.bg-form button{
+    display: block;
+    width: 5rem;
+    background: white;
+    border-radius:0.25rem;
+}
+.bg-form button:hover{
+    background: black;
+    color: white;
+}
+.bg-form input {
+    border-radius: 0.25rem;
+	margin: 15px auto;
+	display: block;
+	width:20em;
+	padding: 8px;
+	border: 1px solid gray;
+}
+.bg-form img{
+    align-self: center;
+    max-height: 5rem;
+    max-width: 3rem;
+}
+.close {
+	position: absolute;
+	top: 0;
+	right: 10px;
+	font-size: 42px;
+	color: #333;
+	transform: rotate(45deg);
+	cursor: pointer;
+}
+.close:hover{
+    color:red;
 }
