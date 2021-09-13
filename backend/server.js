@@ -30,7 +30,7 @@ app.post('/api/indata', (req,res)=>{
         quantity: req.body.quantity
     })
     ins.save()
-    .then((req,res)=>{
+    .then(()=>{
         res.json({msg:"INSERTED"});
     }).catch((err, doc)=>{
         if(err){throw err}

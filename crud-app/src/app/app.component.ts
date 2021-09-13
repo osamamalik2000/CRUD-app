@@ -54,6 +54,7 @@ export class AppComponent implements OnInit{
   // Modal Hide
   modalHide(){
     this.modal = false;
+    this.idUpd = null;
   }
   // Updating data with the help of window.prompt function
   update(){
