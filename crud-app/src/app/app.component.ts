@@ -12,16 +12,24 @@ export class AppComponent implements OnInit{
   dataForm : FormGroup;
   modal = false //For showing and hiding model
   idUpd:any; //Used in update to pass the item id
-  rawData: any; //Response in JSON format
-  insData: any;  //Taking only data from json format
   constructor(private fb:FormBuilder, private ds:DatasendService){
     this.dataForm = this.fb.group({
       'product': new FormControl('', Validators.required),
       'quantity': new FormControl('', Validators.required)
     })
   }
+  itemArray:any = [];
   ngOnInit(){
-    this.getD();
+    this.ds.getData().subscribe(
+      list=>(
+        this.itemArray = list.map(items =>{
+          return{
+            $key: items.key,
+            ...items.payload.val()
+          };
+        })
+      )
+    )
   }
   // Saving data in db
   save(){
@@ -30,21 +38,17 @@ export class AppComponent implements OnInit{
     this.ngOnInit();
   }
   // Fetching data
-  getD(){
-    this.ds.getData()
-    .subscribe(res=>{
-      this.rawData = res;
-      this.insData = this.rawData.data;
-    }
-    )
-  }
+  // getD(){
+  //   this.ds.getData()
+  //   .subscribe(res=>{
+  //     this.rawData = res;
+  //     this.insData = this.rawData.data;
+  //   }
+  //   )
+  // }
   // Deleting data
   delete(id: any){
-    this.ds.delItem(id)
-    .subscribe(res=>{
-      console.log(res);
-      this.ngOnInit();
-    })
+    this.ds.delItem(id);
   }
   // Modal show 
   modalShow(id:any){
@@ -58,10 +62,7 @@ export class AppComponent implements OnInit{
   }
   // Updating data with the help of window.prompt function
   update(){
-    this.ds.updItem(this.idUpd, this.dataForm.getRawValue())
-    .subscribe(res=>{
-      console.log(res);
-    });
+    this.ds.updItem(this.idUpd, this.dataForm.getRawValue());
     this.modalHide(); //For hiding the modal after form submission
     this.ngOnInit();
   }

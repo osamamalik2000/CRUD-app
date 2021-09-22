@@ -1,32 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AngularFireDatabase, AngularFireList} from '@angular/fire/compat/database';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatasendService {
   url = "http://localhost:3000/api"
-  constructor(private http:HttpClient) { }
-  // Saving data
-  dataSave(data: any){
-    return this.http.post(this.url+"/indata", data)
-    .subscribe(
-      (res)=>{
-        console.log(res);
-      }
-    )
-  }
+  constructor(private http:HttpClient, private firebase: AngularFireDatabase) { }
+  shoppingList!: AngularFireList<any>;
+  
   // Fetching data
   getData(){
-    return this.http.get(this.url+"/getData");
+    this.shoppingList = this.firebase.list('List');
+    return this.shoppingList.snapshotChanges();
+  }
+  // Saving data
+  dataSave(data: any){
+    this.shoppingList.push(data);
+    // console.log(data);
   }
   // Deleting data
-  delItem(id:any){
+  delItem($key:any){
     // console.log(id)  Checking for id
-    return this.http.get(this.url+"/delData/"+id);
+    return this.shoppingList.remove($key);
   }
   updItem(id: any, data:any){
     // console.log(data) CHecked
-    return this.http.put(this.url+"/updData/"+id, data);
+    // return this.http.put(this.url+"/updData/"+id, data);
+    return this.shoppingList.update(id, data);
   }
 }

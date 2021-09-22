@@ -9,12 +9,12 @@
         <th align=left>Update</th>
         <th align=left>Delete</th>
       </tr>
-      <tr *ngFor= "let d of insData; let i=index">
+      <tr *ngFor= "let d of itemArray; let i=index">
         <td>{{i+1}}</td>
         <td>{{d.product}}</td>
         <td>{{d.quantity}}</td>
-        <td><button id="button" (click)="modalShow(d._id)">Update</button></td>
-        <td><button (click)="delete(d._id)">Delete</button></td>
+        <td><button id="button" (click)="modalShow(d.$key)">Update</button></td>
+        <td><button (click)="delete(d.$key)">Delete</button></td>
       </tr>
     </table>
   </div>
